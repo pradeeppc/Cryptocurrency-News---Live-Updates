@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--Jumbotron-->
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card card-image" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm2AbQsheN2L4sQPz5FWztLlAMn5KPlTGGcuKCvaBbvuLKmQKy);">
+            <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+                <div class="py-5">
+
+    
+                        <h1 class="card-title pt-3 mb-5 font-bold">Welcome to the Crypto News Network! </h1>
+                        <h2 class="px-5 pb-4">Latest News on Crypto Coins And Blockchain!</h2>
+                        <h6 class="orange-text font-bold"><i class="fa fa-camera-retro"></i> By Pradeep Chauhan</h6>
+                        
+                    <!--Content-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Jumbotron-->
+
+
+
+
+<div class="table-responsive">
+	<table class="table table-bordered table-striped table-hover">
+	<thead>
+	    <tr>
+	      <th scope="col">Name</th>
+	      <th scope="col">Price_INR(Rs)</th>
+	      <th scope="col">Price_USD</th>
+	      <th scope="col">Price_EUR</th>
+	      <th scope="col">24h_High_IND</th>
+	      <th scope="col">24h_High_USD</th>
+	      <th scope="col">24h_High_EUR</th>
+	      <th scope="col">24h_Low_IND</th>
+	      <th scope="col">24h_Low_US</th>
+	      <th scope="col">24h_Low_EUR</th>
+	      <th scope="col">Market_Cap_IND</th>
+	      <th scope="col">Market_Cap_US</th>
+	      <th scope="col">Market_Cap_EUR</th>
+	    </tr>
+	</thead>
+	<tbody>
+{% for key,value in price.DISPLAY.items %}
+
+	    <tr>
+	      <th>{{ key }}</th>
+	      <td>{{ value.IND.PRICE }} <td> {{ value.USD.PRICE }} <td> {{ value.EUR.PRICE }}</td>
+	      <td>{{ value.IND.HIGHDAY }} <td> {{ value.USD.HIGHDAY }} <td> {{ value.EUR.HIGHDAY }}</td>
+	      <td>{{ value.IND.LOWDAY }} <td> {{ value.USD.LOWDAY }} <td> {{ value.EUR.LOWDAY }}</td>
+	      <td>{{ value.IND.MKTCAP }} <td> {{ value.USD.MKTCAP }} <td> {{ value.EUR.MKTCAP }}</td>
+	    </tr>
+	{% endfor %}
+
+
+	  </tbody>
+	</table>
+</div>
+
+<br/><br/>
+
+<div class="container">
+	<div class="row">
+		{% for x in api.Data %}
+			<div class="col-sm">
+				<div class="card" style="width: 18rem;">
+	  				<img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source}}">
+	  				<div class="card-body">
+	    				<h5 class="card-title">{{ x.title }}</h5>
+	    				<p class="card-text">{{ x.body }}</p>
+	    				<a href="{{ x.url }}" class="btn btn-secondary">Show more...</a>
+	  				</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>	
+</div>
+
+
+
+{% endblock %}
